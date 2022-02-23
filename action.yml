@@ -1,5 +1,8 @@
 name: Theneo API Documentation
 description: Generate Stripe-like API Documentation
+branding:
+  icon: "award"
+  color: "green"
 inputs:
   PATH:
     description: "file path"
@@ -13,6 +16,3 @@ inputs:
 runs:
   using: "node16"
   main: "dist/index.js"
-branding:
-  color: orange
-  icon: book-open
