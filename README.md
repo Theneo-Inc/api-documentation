@@ -58,7 +58,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/atirna
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](https://github.com/bump-sh/github-action/blob/master/LICENSE).
-
-## Code of Conduct
-
-Everyone interacting in the Theneo `github-action` project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct]().
