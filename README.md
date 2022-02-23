@@ -56,4 +56,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/theneo
 
 ## License
 
-The scripts and documentation in this project are released under the [MIT License](https://github.com/bump-sh/github-action/blob/master/LICENSE).
+The scripts and documentation in this project are released under the [MIT License](https://github.com/theneoAPIDoc/api-documentation/blob/main/LICENSE).
