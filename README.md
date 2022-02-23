@@ -1,6 +1,6 @@
 # Generate Stripe-like API Documentation
 
-<p align="center"><img src='./asset/logo.png' /></p>
+<p align="center"><img src='./asset/logo.png' height='150' width='150' /></p>
 <p align='center'><a href='https://theneo.io/'>Create My Free Account</a></p>
 
 ## Table of contents
