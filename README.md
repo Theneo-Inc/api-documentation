@@ -9,7 +9,6 @@
 - [Inputs](#inputs)
 - [Contributing](#contributing)
 - [Licence](#license)
-- [Code Of Conduct](#code-of-conduct)
 
 ## Usage
 
@@ -53,7 +52,7 @@ _make sure to update path with your document path, PROJECT_KEY with project key,
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/atirnayab/test-ci-cd. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org/) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/theneoAPIDoc/api-documentation. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org/) code of conduct.
 
 ## License
 
