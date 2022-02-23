@@ -14,5 +14,5 @@ runs:
   using: "node16"
   main: "dist/index.js"
 branding:
-  color: 'orange'
+  color: orange
   icon: 'book-open'
