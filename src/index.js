@@ -26,7 +26,7 @@ async function testing() {
       },
     };
     const { data } = await post(
-      "https://api-staging.theneo.io/github/update-doc",
+      "http://8606-103-252-164-36.ngrok.io/github/update-doc",
       {
         key: projectKey,
         file,
