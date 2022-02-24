@@ -26,7 +26,7 @@ async function testing() {
       },
     };
     const { data } = await post(
-      "https://api-staging.theneo.io/github/update-doc",
+      "https://api.theneo.io/github/update-doc",
       {
         key: projectKey,
         file,
