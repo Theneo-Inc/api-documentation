@@ -12,7 +12,7 @@
 
 ## Usage
 
-Start by creating a documentation on [Theneo](https://theneo.io). Then add following workflow file to your GitHub project `.github/workflows/[file name].md`. On every push request theneo documentation will be updated.
+Start by creating a documentation on [Theneo](https://theneo.io). Then add following workflow file to your GitHub project `.github/workflows/Theneo.yml`. On every push request theneo documentation will be updated.
 
 ### Update documentation on pull request
 
@@ -20,7 +20,10 @@ Update api documentation on push.
 
 ```
 name: Update documention
-on: [push]
+on:
+  pull_request:
+    branches:
+      - main
 jobs:
   update-doc:
     name: update theneo doc
