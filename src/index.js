@@ -12,7 +12,7 @@ const file = readFileSync(path);
 async function testing() {
   try {
     if (!path) throw new Error("add doc path in workflow file");
-    if (!projectKey) throw new Error("add DOCUMENT_KEY in github secret");
+    if (!projectKey) throw new Error("add PROJECT_KEY in github secret");
     if (!secret) throw new Error("add secret in github secret");
 
     await lintFile(path).catch((err) => {
