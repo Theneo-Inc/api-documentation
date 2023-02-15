@@ -2,13 +2,13 @@ name: Theneo API Documentation
 description: Generate Stripe-like API Documentation
 inputs:
   PATH:
-    description: "file path"
+    description: "API documentation file path"
     required: true
   PROJECT_KEY:
-    description: "project key"
+    description: "Unique Key for the project"
     required: true
   SECRET:
-    description: "github secret key"
+    description: "API Key from Theneo website"
     required: true
 runs:
   using: "node16"

@@ -1,0 +1,538 @@
+{
+	"info": {
+		"_postman_id": "7b93e5d9-ff17-4cdc-8fdc-5de864ffa471",
+		"name": "Theneo Sample OpenGMAPI Doc",
+		"description": "Theneo APIs enable you to generate beautiful API documentations effortlessly. Why should only top companies like Stripe, Square, and Twilio have gorgeous documentations? With Theneo you can also generate API documents that you could be proud of. The Theneo API follows the general patterns of REST Please note: All the endpoints and API references discussed here are just for demo purposes, they are not functional\n\n\nContact Support:\n Email: hello@theneo.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "retrieves super duper mock-documentations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/documentation?searchString=<string>&numberofDocs=25&category=<string>&sortBy=<string>&sortOrder=<string>",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"documentation"
+					],
+					"query": [
+						{
+							"key": "searchString",
+							"value": "<string>",
+							"description": "pass an optional search string for looking up inventory"
+						},
+						{
+							"key": "numberofDocs",
+							"value": "25",
+							"description": "number of documentations to return"
+						},
+						{
+							"key": "category",
+							"value": "<string>",
+							"description": "category of documentations to return"
+						},
+						{
+							"key": "sortBy",
+							"value": "<string>",
+							"description": "Allowed: dateUpdated, dateAdded."
+						},
+						{
+							"key": "sortOrder",
+							"value": "<string>",
+							"description": "Allowed: asc, desc. asc is ascending and sorts from A to Z. desc is descending and sorts from Z to A."
+						}
+					]
+				},
+				"description": "By passing in the appropriate options, you can search for\navailable API documentations\n"
+			},
+			"response": [
+				{
+					"name": "bad input parameter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/documentation?searchString=<string>&numberofDocs=25&category=publicAPI&sortBy=key&sortOrder=desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"documentation"
+							],
+							"query": [
+								{
+									"key": "searchString",
+									"value": "<string>"
+								},
+								{
+									"key": "numberofDocs",
+									"value": "25"
+								},
+								{
+									"key": "category",
+									"value": "publicAPI"
+								},
+								{
+									"key": "sortBy",
+									"value": "key"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "search results matching criteria",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/documentation?searchString=<string>&numberofDocs=25&category=publicAPI&sortBy=key&sortOrder=desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"documentation"
+							],
+							"query": [
+								{
+									"key": "searchString",
+									"value": "<string>"
+								},
+								{
+									"key": "numberofDocs",
+									"value": "25"
+								},
+								{
+									"key": "category",
+									"value": "publicAPI"
+								},
+								{
+									"key": "sortBy",
+									"value": "key"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"id\": \"demo\",\n  \"dateAdded\": \"2016-08-29T09:12:33.001Z\",\n  \"documentation\": \"Theneo Sample API Doc\",\n  \"category\": \"OpenAPI\",\n  \"key\": \"demo\"\n },\n {\n  \"id\": \"demo\",\n  \"dateAdded\": \"2016-08-29T09:12:33.001Z\",\n  \"documentation\": \"Theneo Sample API Doc\",\n  \"category\": \"OpenAPI\",\n  \"key\": \"demo\"\n }\n]"
+				}
+			]
+		},
+		{
+			"name": "adds a documentation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentation\": \"<string>\",\n    \"key\": \"<string>\",\n    \"category\": \"<string>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseUrl}}/documentation",
+				"description": "Adds a documentation to the system"
+			},
+			"response": [
+				{
+					"name": "invalid input, object invalid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documentation\": \"Theneo Sample API Doc\",\n    \"key\": \"demo\",\n    \"category\": \"knockKnock\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/documentation"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "an existing item already exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documentation\": \"Theneo Sample API Doc\",\n    \"key\": \"demo\",\n    \"category\": \"knockKnock\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/documentation"
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "item created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documentation\": \"Theneo Sample API Doc\",\n    \"key\": \"demo\",\n    \"category\": \"knockKnock\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/documentation"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.json"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Deletes an API Doc",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/documentation/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"documentation",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "<string>",
+							"description": "(Required) The documentation ID for the documentation you want to delete"
+						}
+					]
+				},
+				"description": "Delete the API Doc from the system"
+			},
+			"response": [
+				{
+					"name": "Documentation was successfully deleted",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/documentation/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"documentation",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "<string>",
+									"description": "(Required) The documentation ID for the documentation you want to delete"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Invite users to the document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"useremail\": \"<string>\",\n    \"documentatId\": \"<string>\",\n    \"permission\": \"<string>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseUrl}}/doumentation/invitatation",
+				"description": "Invite users to the document"
+			},
+			"response": [
+				{
+					"name": "invalid input, object invalid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"useremail\": \"arobakid@theneo.io\",\n    \"documentatId\": \"theneo-demo\",\n    \"permission\": \"editor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/doumentation/invitatation"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "item created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"useremail\": \"arobakid@theneo.io\",\n    \"documentatId\": \"theneo-demo\",\n    \"permission\": \"editor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/doumentation/invitatation"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.json"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "an existing item already exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"useremail\": \"arobakid@theneo.io\",\n    \"documentatId\": \"theneo-demo\",\n    \"permission\": \"editor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/doumentation/invitatation"
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Updates the API Doc",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/doumentation/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"doumentation",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "<string>",
+							"description": "(Required) The documentation ID for the documentation you want to update"
+						}
+					]
+				},
+				"description": "Update the API documentation details"
+			},
+			"response": [
+				{
+					"name": "invalid input, object invalid",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/doumentation/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"doumentation",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "<string>",
+									"description": "(Required) The documentation ID for the documentation you want to update"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Documentation was successfully updated",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/doumentation/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"doumentation",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "<string>",
+									"description": "(Required) The documentation ID for the documentation you want to update"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"key\": \"demo\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://app.theneo.io",
+			"type": "string"
+		}
+	]
+}
