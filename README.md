@@ -51,7 +51,7 @@ _make sure to update path with your document path, PROJECT_KEY with project key,
 
 - `PATH` (required): path to your documentation file within repository.
 - `PROJECT_KEY` (required): unique identifier of project, it can be found under project settings for existing project.
-- `SECRET` (required): github secret key to authenticate github request, displayed under user profile.
+- `SECRET` (required): Theneo API token to authenticate github request, displayed under user profile.
 
 ## Contributing
 
