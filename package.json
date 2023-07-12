@@ -1,28 +1,28 @@
 {
-  "name": "api-documentation",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
-  "scripts": {
-    "build": "ncc build src/index.js -m -o dist",
-    "test": "node src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/theneoAPIDoc/api-documentation.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/theneoAPIDoc/api-documentation/issues"
-  },
-  "homepage": "https://github.com/theneoAPIDoc/api-documentation#readme",
-  "dependencies": {
-    "@actions/core": "^1.6.0",
-    "@vercel/ncc": "^0.33.3",
-    "axios": "^0.26.0",
-    "form-data": "^4.0.0",
-    "yaml-lint": "^1.2.4"
-  }
+    "name": "api-documentation",
+    "version": "1.0.1",
+    "description": "",
+    "main": "src/index.js",
+    "scripts": {
+        "build": "ncc build src/index.js -m -o dist",
+        "test": "node src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Theneo-Inc/api-documentation.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Theneo-Inc/api-documentation/issues"
+    },
+    "homepage": "https://github.com/Theneo-Inc/api-documentation#readme",
+    "dependencies": {
+        "@actions/core": "^1.6.0",
+        "@vercel/ncc": "^0.33.3",
+        "axios": "^0.26.0",
+        "form-data": "^4.0.0",
+        "yaml-lint": "^1.2.4"
+    }
 }
