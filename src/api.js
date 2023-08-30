@@ -3,7 +3,7 @@ const config = require("./config");
 const FormData = require("form-data");
 
 async function getProjects(customHeaders) {
-    const req = await axios.get(`${config.API_DOMAIN}/v2/project/github`, {headers: customHeaders})
+    const req = await axios.get(`${config.API_DOMAIN}/project/github`, {headers: customHeaders})
     return req.data.data;
 }
 
@@ -11,7 +11,7 @@ async function importCollections(projectId, customHeaders, content) {
     const bodyFormData = new FormData();
     bodyFormData.append("text", content);
     const response = await axios.post(
-        `${config.API_DOMAIN}/v2/project/${projectId}/import/github`,
+        `${config.API_DOMAIN}/project/${projectId}/import/github`,
         bodyFormData,
         {
             headers: {
@@ -34,7 +34,7 @@ async function importCollections(projectId, customHeaders, content) {
 
 async function publishDocumentation(projectId, customHeaders) {
     await axios.post(
-        `${config.API_DOMAIN}/v2/publish/${projectId}/github`,
+        `${config.API_DOMAIN}/publish/${projectId}/github`,
         new FormData(),
         {headers: customHeaders}
     );

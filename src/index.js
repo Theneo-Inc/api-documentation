@@ -28,11 +28,19 @@ async function checkDocumentationFile(path) {
 }
 
 async function main(path, projectKey, secret) {
+    if (!path) {
+        setFailed("Add API documentation PATH in workflow file");
+        return;
+    }
+    if (!projectKey) {
+        setFailed("Add PROJECT_KEY in github secret");
+        return;
+    }
+    if (!secret) {
+        setFailed("Add SECRET - Theneo API token");
+        return;
+    }
     try {
-        if (!path) throw new Error("Add API documentation PATH in workflow file");
-        if (!projectKey) throw new Error("Add PROJECT_KEY in github secret");
-        if (!secret) throw new Error("Add SECRET - Theneo API token");
-
         await checkDocumentationFile(path);
 
         const file = readFileSync(path);
