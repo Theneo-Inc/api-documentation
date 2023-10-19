@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: "16"
       - name: process documentation on server
-        uses: Theneo-Inc/api-documentation@1.1.1
+        uses: Theneo-Inc/api-documentation@1.2.0
         with:
           PATH: doc/api.yml
           PROJECT_KEY: ${{secrets.PROJECT_KEY}}

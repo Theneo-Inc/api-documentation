@@ -1,7 +1,6 @@
 const {getInput, setFailed} = require("@actions/core");
-const {readFileSync} = require("fs");
-const {importCollections, publishDocumentation, getProjects} = require("./api");
 const {lintFile} = require("yaml-lint");
+const {Theneo, ImportOption} = require("@theneo/sdk");
 
 const path = getInput("PATH");
 const projectId = getInput("PROJECT_KEY");
@@ -12,7 +11,7 @@ function getProjectId(projects, projectKey) {
     if (!project) {
         throw new Error(`Could not find projects by key ${projectKey}`)
     }
-    return project._id;
+    return project.id;
 }
 
 async function checkDocumentationFile(path) {
@@ -33,31 +32,46 @@ async function main(path, projectKey, secret) {
         return;
     }
     if (!projectKey) {
-        setFailed("Add PROJECT_KEY in github secret");
+        setFailed("PROJECT_KEY is missing");
         return;
     }
     if (!secret) {
-        setFailed("Add SECRET - Theneo API token");
+        setFailed("Add SECRET - Theneo API token, you can get it from: https://app.theneo.io/account-settings/toolsandintegrations");
         return;
     }
     try {
         await checkDocumentationFile(path);
 
-        const file = readFileSync(path);
-        const content = file.toString();
+        const theneo = new Theneo({
+            apiKey: secret,
+            apiClientName: "Github Actions"
+        })
 
-        const headers = {
-            github: secret,
-            tags: ["GITHUB"]
+        const projectsResult = await theneo.listProjects();
+        if (projectsResult.err) {
+            setFailed(projectsResult.error.message);
+            return;
         }
-        const projects = await getProjects(headers);
-        const projectId = getProjectId(projects, projectKey);
-        const {ok} = await importCollections(projectId, headers, content);
+        const projectId = getProjectId(projectsResult.unwrap(), projectKey);
 
-        if (ok) {
-            await publishDocumentation(projectId, headers)
+        const result = await theneo.importProjectDocument({
+            projectId: projectId,
+            publish: true,
+            data: {
+                file: path
+            },
+            importOption: ImportOption.MERGE,
+        });
+
+        if (result.err) {
+            setFailed(result.error.message);
+            return;
         }
-        console.log("API Documentation was published")
+        if (result.value.publishData) {
+            console.log(`API Documentation was published, you can see it here: ${result.value.publishData.publishedPageUrl}`)
+        } else {
+            console.log("API Documentation was updated successfully")
+        }
     } catch (err) {
         setFailed(err.message);
     }
