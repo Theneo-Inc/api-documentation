@@ -60,7 +60,7 @@ async function main(path, projectKey, secret) {
             data: {
                 file: path
             },
-            importOption: ImportOption.MERGE,
+            importOption: ImportOption.OVERWRITE,
         });
 
         if (result.err) {
