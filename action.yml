@@ -1,15 +1,27 @@
 name: Theneo API Documentation
 description: Generate Stripe-like API Documentation
 inputs:
-  PATH:
+  FILE_PATH:
     description: "API documentation file path"
     required: true
+  PATH:
+    description: "API documentation file path (deprecated)"
+    deprecationMessage: "Use FILE_PATH instead"
+    required: false
   PROJECT_KEY:
     description: "Unique Key for the project"
     required: true
   SECRET:
     description: "API Key from Theneo website"
     required: true
+  IMPORT_OPTION:
+    description: "Import option should be one of (overwrite, merge, endpoints)"
+    required: false
+    default: "overwrite"
+  SHOULD_PUBLISH:
+    description: "Indicates if the documentation should be published automatically or not after importing"
+    required: false
+    default: "true"
 runs:
   using: "node16"
   main: "dist/index.js"

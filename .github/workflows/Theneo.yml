@@ -1,0 +1,29 @@
+name: Update Documentation
+on:
+  push:
+    branches:
+      - main
+jobs:
+  update-doc:
+    name: update theneo doc
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Process documentation on server
+        uses: Theneo-Inc/api-documentation@main
+        with:
+          FILE_PATH: test/petstore.yaml
+          PROJECT_KEY: ${{vars.PROJECT_KEY}}
+          SECRET: ${{secrets.THENEO_ACCOUNT_SECRET}}
+          IMPORT_OPTION: overwrite
+          SHOULD_PUBLISH: true
+      - name: check if documentation is updated
+        run: |
+          chmod +X ./scripts/check-doc.sh
+          ./scripts/check-doc.sh ${{vars.THENEO_GITHUB_ACTION_TEST_PROJECT_URL}} "Find pets" "Add pet" "Find pet by id" "Delete pet"
