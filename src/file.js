@@ -1,4 +1,4 @@
-const lintFile = require("yaml-lint");
+const {lintFile} = require("yaml-lint");
 
 async function checkDocumentationFile(path) {
   if (path.includes(".")) {
