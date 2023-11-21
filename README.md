@@ -31,27 +31,33 @@ jobs:
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
       - name: process documentation on server
-        uses: Theneo-Inc/api-documentation@1.3.0
+        uses: Theneo-Inc/api-documentation@1.4.0
         with:
-          PATH: doc/api.yml
+          FILE_PATH: doc/api.yml
           PROJECT_KEY: ${{secrets.PROJECT_KEY}}
           SECRET: ${{secrets.SECRET}}
-
+          IMPORT_OPTION: overwrite
+          SHOULD_PUBLISH: false
 ```
 
 _make sure to update path with your document path, PROJECT_KEY with project key, SECRET with github secret_
 
 ## Inputs
 
-- `PATH` (required): path to your documentation file within repository.
+- `FILE_PATH` (required): path to your documentation file within repository.
 - `PROJECT_KEY` (required): unique identifier of project, it can be found under project settings for existing project.
 - `SECRET` (required): Theneo API token to authenticate github request, displayed under user profile.
+- `IMPORT_OPTION` (optional): import option should be one of (overwrite, merge, endpoints).
+- `SHOULD_PUBLISH` (optional): Indicates if the documentation should be published automatically or not after importing.
+
+### deprecated inputs
+- `PATH` - instead use `FILE_PATH`
 
 ## Contributing
 
