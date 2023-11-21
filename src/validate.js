@@ -1,7 +1,8 @@
 const {ImportOption} = require("@theneo/sdk");
+const {checkDocumentationFile} = require("./file");
 
 
-function validateInputOptions(options) {
+async function validateInputOptions(options) {
   if (!options.path) {
     throw new Error("Add API documentation FILE_PATH in workflow file");
   }
@@ -14,9 +15,10 @@ function validateInputOptions(options) {
 
   const importOptions = [ImportOption.OVERWRITE, ImportOption.MERGE, ImportOption.ENDPOINTS_ONLY];
   if (options.importOption && !importOptions.includes(options.importOption)) {
-    throw new Error(`import option should be one of ${options.importOptions}`);
+    throw new Error(`import option should be one of ${options.importOption}`);
   }
 
+  await checkDocumentationFile(options.path);
 }
 
 

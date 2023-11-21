@@ -18,7 +18,7 @@ inputs:
     description: "Import option should be one of (overwrite, merge, endpoints)"
     required: false
     default: "overwrite"
-  SHOULD_PUBLISH:
+  AUTO_PUBLISH:
     description: "Indicates if the documentation should be published automatically or not after importing"
     required: false
     default: "true"

@@ -22,7 +22,7 @@ jobs:
           PROJECT_KEY: ${{vars.PROJECT_KEY}}
           SECRET: ${{secrets.THENEO_ACCOUNT_SECRET}}
           IMPORT_OPTION: overwrite
-          SHOULD_PUBLISH: true
+          AUTO_PUBLISH: true
       - name: check if documentation is updated
         run: |
           chmod +X ./scripts/check-doc.sh

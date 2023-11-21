@@ -9,7 +9,7 @@ const path = getInputOption("FILE_PATH") || getInputOption("PATH");
 const projectKey = getInputOption("PROJECT_KEY");
 const secret = getInputOption("SECRET");
 const importOption = getInputOption("IMPORT_OPTION");
-const shouldPublish = getInputOption("SHOULD_PUBLISH") === "true";
+const autoPublish = getInputOption("AUTO_PUBLISH") === "true";
 
 function getProjectId(projects, projectKey) {
   const project = projects.find((project) => project.key === projectKey);
@@ -21,8 +21,8 @@ function getProjectId(projects, projectKey) {
 
 
 async function main(options) {
-  validateInputOptions(options);
-  const {path, projectKey, secret, importOption, shouldPublish} = options
+  await validateInputOptions(options);
+  const {path, projectKey, secret, importOption, autoPublish} = options
 
   const theneo = new Theneo({
     apiKey: secret,
@@ -38,7 +38,7 @@ async function main(options) {
 
   const result = await theneo.importProjectDocument({
     projectId: projectId,
-    publish: shouldPublish,
+    publish: autoPublish,
     data: {
       file: path
     },
@@ -57,5 +57,5 @@ async function main(options) {
 
 }
 
-main({path, projectKey, secret, importOption, shouldPublish})
+main({path, projectKey, secret, importOption, autoPublish})
   .catch(setFailed);
