@@ -1,6 +1,6 @@
-const {setFailed} = require("@actions/core");
+const {setFailed, info} = require("@actions/core");
 const {Theneo} = require("@theneo/sdk");
-const {CLI_VERSION} = require("./version.js");
+const {GITHUB_ACTION_VERSION} = require("./version.js");
 const {validateInputOptions} = require("./validate.js");
 const {getInputOption} = require("./input.js");
 
@@ -10,6 +10,7 @@ const projectKey = getInputOption("PROJECT_KEY");
 const secret = getInputOption("SECRET");
 const importOption = getInputOption("IMPORT_OPTION");
 const autoPublish = getInputOption("AUTO_PUBLISH") === "true";
+const includeGithubMetadata = getInputOption("INCLUDE_GITHUB_METADATA") === "true";
 
 function getProjectId(projects, projectKey) {
   const project = projects.find((project) => project.key === projectKey);
@@ -26,7 +27,10 @@ async function main(options) {
 
   const theneo = new Theneo({
     apiKey: secret,
-    apiClientName: `github-actions:${CLI_VERSION}`
+    apiClientMetadata: {
+      apiClientName: "github-action",
+      apiClientVersion: GITHUB_ACTION_VERSION
+    }
   })
 
   const projectsResult = await theneo.listProjects();
@@ -36,14 +40,22 @@ async function main(options) {
   }
   const projectId = getProjectId(projectsResult.unwrap(), projectKey);
 
-  const result = await theneo.importProjectDocument({
+  const importProjectData = {
     projectId: projectId,
     publish: autoPublish,
     data: {
       file: path
     },
     importOption: importOption,
-  });
+  };
+
+  if (includeGithubMetadata) {
+    const authorName = process.env.GITHUB_ACTOR ?? process.env.GITHUB_TRIGGERING_ACTOR;
+    importProjectData.importMetadata = {
+      authorName: authorName,
+    }
+  }
+  const result = await theneo.importProjectDocument(importProjectData);
 
   if (result.err) {
     setFailed(result.error.message);
@@ -57,5 +69,5 @@ async function main(options) {
 
 }
 
-main({path, projectKey, secret, importOption, autoPublish})
+main({path, projectKey, secret, importOption, autoPublish, includeGithubMetadata})
   .catch(setFailed);

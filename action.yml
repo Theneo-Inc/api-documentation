@@ -22,6 +22,11 @@ inputs:
     description: "Indicates if the documentation should be published automatically or not after importing"
     required: false
     default: "true"
+  INCLUDE_GITHUB_METADATA:
+    description: ""
+    required: false
+    default: "false"
+
 runs:
   using: "node16"
   main: "dist/index.js"
