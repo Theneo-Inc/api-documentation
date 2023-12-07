@@ -23,6 +23,7 @@ jobs:
           SECRET: ${{secrets.THENEO_ACCOUNT_SECRET}}
           IMPORT_OPTION: overwrite
           AUTO_PUBLISH: true
+          INCLUDE_GITHUB_METADATA: true
       - name: check if documentation is updated
         run: |
           chmod +X ./scripts/check-doc.sh
