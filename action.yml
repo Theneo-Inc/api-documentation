@@ -23,7 +23,7 @@ inputs:
     required: false
     default: "true"
   INCLUDE_GITHUB_METADATA:
-    description: ""
+    description: "Include GitHub metadata - such as GitHub actor username for import metadata"
     required: false
     default: "false"
 

@@ -44,6 +44,7 @@ jobs:
           SECRET: ${{secrets.SECRET}}
           IMPORT_OPTION: overwrite
           AUTO_PUBLISH: false
+          INCLUDE_GITHUB_METADATA: true
 ```
 
 _make sure to update path with your document path, PROJECT_KEY with project key, SECRET with GitHub secret_
@@ -55,7 +56,7 @@ _make sure to update path with your document path, PROJECT_KEY with project key,
 - `SECRET` (required): Theneo API token to authenticate GitHub request, displayed under user profile.
 - `IMPORT_OPTION` (optional): import option should be one of (`overwrite`, `merge`, `endpoints`), by default `overwrite` will be used.
 - `AUTO_PUBLISH` (optional): Indicates if the documentation should be published automatically or not after importing.
-
+- `INCLUDE_GITHUB_METADATA` (optional): Indicates if the imported documentation should include GitHub metadata (such as GitHub actor) or not - only visible in Theneo's editor.
 ### deprecated inputs
 - `PATH` - instead use `FILE_PATH`
 
