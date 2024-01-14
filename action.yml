@@ -15,7 +15,7 @@ inputs:
     description: "API Key from Theneo website"
     required: true
   IMPORT_OPTION:
-    description: "Import option should be one of (overwrite, merge, endpoints)"
+    description: "Import option should be one of (overwrite, merge, endpoints, append)"
     required: false
     default: "overwrite"
   AUTO_PUBLISH:

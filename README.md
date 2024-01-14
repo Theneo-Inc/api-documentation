@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: "18"
       - name: process documentation on server
-        uses: Theneo-Inc/api-documentation@1.6.0
+        uses: Theneo-Inc/api-documentation@1.7.0
         with:
           FILE_PATH: doc/api.yml
           PROJECT_KEY: ${{secrets.PROJECT_KEY}}
@@ -54,7 +54,7 @@ _make sure to update path with your document path, PROJECT_KEY with project key,
 - `FILE_PATH` (required): path to your documentation file within repository.
 - `PROJECT_KEY` (required): unique identifier of project, it can be found under project settings for existing project.
 - `SECRET` (required): Theneo API token to authenticate GitHub request, displayed under user profile.
-- `IMPORT_OPTION` (optional): import option should be one of (`overwrite`, `merge`, `endpoints`), by default `overwrite` will be used.
+- `IMPORT_OPTION` (optional): import option should be one of (`overwrite`, `merge`, `endpoints`, `append`), by default `overwrite` will be used.
 - `AUTO_PUBLISH` (optional): Indicates if the documentation should be published automatically or not after importing.
 - `INCLUDE_GITHUB_METADATA` (optional): Indicates if the imported documentation should include GitHub metadata (such as GitHub actor) or not - only visible in Theneo's editor.
 ### deprecated inputs
