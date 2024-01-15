@@ -13,7 +13,7 @@ async function validateInputOptions(options) {
     throw new Error("Add SECRET - Theneo API token, you can get it from: https://app.theneo.io/account-settings/toolsandintegrations");
   }
 
-  const importOptions = [ImportOption.OVERWRITE, ImportOption.MERGE, ImportOption.ENDPOINTS_ONLY];
+  const importOptions = Object.values(ImportOption);
   if (options.importOption && !importOptions.includes(options.importOption)) {
     throw new Error(`import option should be one of ${options.importOption}`);
   }
