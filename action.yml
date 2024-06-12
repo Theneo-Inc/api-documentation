@@ -10,7 +10,17 @@ inputs:
     required: false
   PROJECT_KEY:
     description: "Unique Key for the project"
-    required: true
+    deprecationMessage: "Use PROJECT_SLUG instead"
+    required: false
+  PROJECT_SLUG:
+    description: "Unique Key for the project"
+    required: false
+  VERSION_SLUG:
+    description: "Project version slug to import the update data into, if not provided, the default version will be used"
+    required: false
+  WORKSPACE_SLUG:
+    description: "Workspace slug where project is located, if not provided it will search for the project in all workspaces"
+    required: false
   SECRET:
     description: "API Key from Theneo website"
     required: true
@@ -24,6 +34,14 @@ inputs:
     default: "true"
   INCLUDE_GITHUB_METADATA:
     description: "Include GitHub metadata - such as GitHub actor username for import metadata"
+    required: false
+    default: "false"
+  PARAMETER_DESCRIPTION_MERGE_STRATEGY:
+    description: "Merging strategy for parameter descriptions to keep old descriptions from theneo editor if needed, valid values are keep_new or keep_old"
+    required: false
+    default: "false"
+  SECTION_DESCRIPTION_MERGE_STRATEGY:
+    description: "Merging strategy for section descriptions to keep old descriptions from theneo editor if needed, valid values are keep_new or keep_old"
     required: false
     default: "false"
 
