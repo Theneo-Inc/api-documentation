@@ -1,4 +1,4 @@
-const {ImportOption} = require("@theneo/sdk");
+const {ImportOption, MergingStrategy} = require("@theneo/sdk");
 const {checkDocumentationFile} = require("./file");
 
 
@@ -19,9 +19,23 @@ async function validateInputOptions(options) {
   }
 
   await checkDocumentationFile(options.path);
+
+  validateMergingStrategy(options.parameterDescriptionMergeStrategy, "PARAMETER_DESCRIPTION_MERGE_STRATEGY")
+  validateMergingStrategy(options.sectionDescriptionMergeStrategy, "SECTION_DESCRIPTION_MERGE_STRATEGY")
+
+}
+
+function validateMergingStrategy(strategy, parameterName) {
+  if (strategy) {
+    let mergingStrategies = [MergingStrategy.KEEP_NEW, MergingStrategy.KEEP_OLD];
+    if (!mergingStrategies.includes(strategy)) {
+      throw new Error(`Invalid merging strategy ${strategy} for ${parameterName}, should be one of this ${mergingStrategies}`);
+    }
+  }
 }
 
 
 module.exports = {
-  validateInputOptions
+  validateInputOptions,
+  validateMergingStrategy
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "ncc build src/index.js -m -o dist",
     "start": "node src/index.js",
-    "test": "FILE_PATH=test/petstore.yaml SECRET=test PROJECT_KEY=test IMPORT_OPTION=overwrite  npm run start"
+    "test": "FILE_PATH=test/petstore.yaml SECRET=<secret> PROJECT_KEY=test VERSION_SLUG=test  WORKSPACE_SLUG=theneo-testing IMPORT_OPTION=merge AUTO_PUBLISH=true PARAMETER_DESCRIPTION_MERGE_STRATEGY=keep_new SECTION_DESCRIPTION_MERGE_STRATEGY=keep_old npm run start"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,5 @@
 const {getInput} = require("@actions/core");
+const {validateMergingStrategy} = require("./validate");
 
 function getInputOption(name) {
   if (!name) {
@@ -17,6 +18,8 @@ function getInputOptions() {
   const importOption = getInputOption("IMPORT_OPTION");
   const autoPublish = getInputOption("AUTO_PUBLISH") === "true";
   const includeGithubMetadata = getInputOption("INCLUDE_GITHUB_METADATA") === "true";
+  const parameterDescriptionMergeStrategy = getInputOption("PARAMETER_DESCRIPTION_MERGE_STRATEGY");
+  const sectionDescriptionMergeStrategy = getInputOption("SECTION_DESCRIPTION_MERGE_STRATEGY");
   return {
     path,
     projectKey,
@@ -26,6 +29,8 @@ function getInputOptions() {
     importOption,
     autoPublish,
     includeGithubMetadata,
+    parameterDescriptionMergeStrategy,
+    sectionDescriptionMergeStrategy
   };
 }
 

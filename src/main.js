@@ -1,5 +1,5 @@
 const {validateInputOptions} = require("./validate");
-const {Theneo} = require("@theneo/sdk");
+const {Theneo, ImportOption} = require("@theneo/sdk");
 const {GITHUB_ACTION_VERSION} = require("./version");
 const {setFailed} = require("@actions/core");
 const {getVersionId, getProjectId} = require("./helpers");
@@ -16,7 +16,9 @@ async function main(options) {
     autoPublish,
     includeGithubMetadata,
     versionSlug,
-    workspaceSlug
+    workspaceSlug,
+    parameterDescriptionMergeStrategy,
+    sectionDescriptionMergeStrategy
   } = options
 
   const theneo = new Theneo({
@@ -60,13 +62,21 @@ async function main(options) {
     importProjectData.versionId = getVersionId(versionsResult.unwrap(), versionSlug)
   }
 
+  if (importOption === ImportOption.MERGE) {
+    if (parameterDescriptionMergeStrategy || sectionDescriptionMergeStrategy) {
+      importProjectData.importOptionAdditionalData = {
+        parameterDescriptionMergeStrategy,
+        sectionDescriptionMergeStrategy
+      }
+    }
+  }
+
   const result = await theneo.importProjectDocument(importProjectData);
 
   if (result.err) {
     setFailed(result.error.message);
     return;
   }
-  console.log(result.value)
   if (result.value.publishData) {
     console.log(`API Documentation was published, you can see it here: ${result.value.publishData.publishedPageUrl}`)
   } else {
