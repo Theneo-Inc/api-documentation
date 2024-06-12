@@ -7,7 +7,7 @@ async function validateInputOptions(options) {
     throw new Error("Add API documentation FILE_PATH in workflow file");
   }
   if (!options.projectKey) {
-    throw new Error("PROJECT_KEY is missing");
+    throw new Error("PROJECT_SLUG is missing");
   }
   if (!options.secret) {
     throw new Error("Add SECRET - Theneo API token, you can get it from: https://app.theneo.io/account-settings/toolsandintegrations");

@@ -27,4 +27,4 @@ jobs:
       - name: check if documentation is updated
         run: |
           chmod +X ./scripts/check-doc.sh
-          ./scripts/check-doc.sh ${{vars.THENEO_GITHUB_ACTION_TEST_PROJECT_URL}} "Find pets" "Add pet" "Find pet by id" "Delete pet"
+          ./scripts/check-doc.sh ${{vars.THENEO_GITHUB_ACTION_TEST_PROJECT_URL}} "find Pets" "add Pet" "find pet by id" "delete Pet"
