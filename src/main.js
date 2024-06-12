@@ -2,18 +2,11 @@ const {validateInputOptions} = require("./validate");
 const {Theneo} = require("@theneo/sdk");
 const {GITHUB_ACTION_VERSION} = require("./version");
 const {setFailed} = require("@actions/core");
+const {getVersionId, getProjectId} = require("./helpers");
 
 
-function getProjectId(projects, projectKey) {
-  const project = projects.find((project) => project.key === projectKey);
-  if (!project) {
-    throw new Error(`Could not find projects by key ${projectKey}`)
-  }
-  return project.id;
-}
 
-
-export async function main(options) {
+async function main(options) {
   await validateInputOptions(options);
   const {
     path,
@@ -22,7 +15,8 @@ export async function main(options) {
     importOption,
     autoPublish,
     includeGithubMetadata,
-    versionSlug
+    versionSlug,
+    workspaceSlug
   } = options
 
   const theneo = new Theneo({
@@ -33,12 +27,13 @@ export async function main(options) {
     }
   })
 
+
   const projectsResult = await theneo.listProjects();
   if (projectsResult.err) {
     setFailed(projectsResult.error.message);
     return;
   }
-  const projectId = getProjectId(projectsResult.unwrap(), projectKey);
+  const projectId = getProjectId(projectsResult.unwrap(), projectKey, workspaceSlug);
 
   const importProjectData = {
     projectId: projectId,
@@ -56,6 +51,14 @@ export async function main(options) {
     }
   }
 
+  if (versionSlug) {
+    const versionsResult = await theneo.listProjectVersions(projectId);
+    if (versionsResult.err) {
+      setFailed(versionsResult.error.message)
+      return;
+    }
+    importProjectData.versionId = getVersionId(versionsResult.unwrap(), versionSlug)
+  }
 
   const result = await theneo.importProjectDocument(importProjectData);
 
@@ -63,9 +66,14 @@ export async function main(options) {
     setFailed(result.error.message);
     return;
   }
+  console.log(result.value)
   if (result.value.publishData) {
     console.log(`API Documentation was published, you can see it here: ${result.value.publishData.publishedPageUrl}`)
   } else {
     console.log("API Documentation was updated successfully")
   }
+}
+
+module.exports = {
+  main
 }
