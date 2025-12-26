@@ -1,7 +1,5 @@
-# Generate Stripe-like API Documentation
+# Generate Stripe-like {API} docs in seconds
 
-<p align="center"><img src='./asset/logo.png' height='150' width='150' /></p>
-<p align='center'><a href='https://theneo.io/'>Get Started Today</a></p>
 
 ## Table of contents
 
